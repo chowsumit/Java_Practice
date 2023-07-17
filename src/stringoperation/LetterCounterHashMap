@@ -1,0 +1,39 @@
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * In this program, we use a HashMap to store the count of each letter. The countLetters method 
+ * takes a string as input, removes non-alphabetic characters, converts it to lowercase, and 
+ * iterates over each character. For each character, it increments the corresponding count in 
+ * the letterCountMap. Finally, in the main method, we demonstrate the usage of the countLetters 
+ * method by providing a sample string and printing the letter count.
+ * **/
+
+
+public class LetterCounterHashMap {
+    public static void main(String[] args) {
+        String inputString = "Hello, World!";
+        Map<Character, Integer> letterCountMap = countLetters(inputString);
+
+        // Print the letter count
+        for (Map.Entry<Character, Integer> entry : letterCountMap.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+    }
+
+    public static Map<Character, Integer> countLetters(String inputString) {
+        // Remove non-alphabetic characters and convert to lowercase
+        String cleanedString = inputString.replaceAll("[^a-zA-Z]", "").toLowerCase();
+
+        // Create a map to store the letter count
+        Map<Character, Integer> letterCountMap = new HashMap<>();
+
+        // Iterate through each character in the cleaned string
+        for (char c : cleanedString.toCharArray()) {
+            // Increment the count for the current letter
+            letterCountMap.put(c, letterCountMap.getOrDefault(c, 0) + 1);
+        }
+
+        return letterCountMap;
+    }
+}
